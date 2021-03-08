@@ -49,6 +49,29 @@ under the License.
 		<developerConnection>scm:git:https://gitbox.apache.org/repos/asf/flink.git</developerConnection>
 	</scm>
 
+	<!--添加CDH的仓库-->
+	<repositories>
+		<repository>
+			<id>cloudera</id>
+			<url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
+		</repository>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>nexus-163</id>
+			<name>Nexus 163</name>
+			<url>https://mirrors.163.com/maven/repository/maven-public/</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>central</name>
+			<url>https://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+
 	<modules>
 		<!-- Dummy module to force execution of the Maven Shade plugin (see Shade plugin below) -->
 		<module>tools/force-shading</module>
@@ -93,6 +116,7 @@ under the License.
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<hadoop.version>2.4.1</hadoop.version>
 		<!-- Need to use a user property here because the surefire
@@ -823,6 +847,26 @@ under the License.
 
 	<profiles>
 		<profile>
+			<id>vendor-repos</id>
+			<activation>
+				<property>
+					<name>vendor-repos</name>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>cloudera-releases</id>
+					<url>https://repository.cloudera.com/artifactory/clouderarepos</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+		<profile>
 			<id>scala-2.11</id>
 			<properties>
 				<scala.version>2.11.12</scala.version>
@@ -1002,8 +1046,10 @@ under the License.
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<configuration>
-							<source>11</source>
-							<target>11</target>
+							<source>1.8</source>
+							<target>1.8</target>
+							<!-- 项目编码-->
+							<encoding>UTF-8</encoding>
 							<compilerArgs combine.children="append">
 								<arg>--add-exports=java.base/sun.net.util=ALL-UNNAMED</arg>
 								<arg>--add-exports=java.management/sun.management=ALL-UNNAMED</arg>
@@ -1534,10 +1580,32 @@ under the License.
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>verify</id>
+						<phase>verify</phase>
+						<configuration>
+							<skip>true</skip>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<includeTestSourceDirectory>false</includeTestSourceDirectory>
+						</configuration>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>com.diffplug.spotless</groupId>
 				<artifactId>spotless-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -1821,6 +1889,7 @@ under the License.
 						</execution>
 					</executions>
 					<configuration>
+						<skip>true</skip>
 						<suppressionsLocation>/tools/maven/suppressions.xml</suppressionsLocation>
 						<includeTestSourceDirectory>true</includeTestSourceDirectory>
 						<configLocation>/tools/maven/checkstyle.xml</configLocation>
@@ -1834,6 +1903,7 @@ under the License.
 					<artifactId>spotless-maven-plugin</artifactId>
 					<version>${spotless.version}</version>
 					<configuration>
+						<skip>true</skip>
 						<java>
 							<googleJavaFormat>
 								<version>1.7</version>
@@ -1844,7 +1914,6 @@ under the License.
 							<importOrder>
 								<order>org.apache.flink,org.apache.flink.shaded,,javax,java,scala,\#</order>
 							</importOrder>
-
 							<removeUnusedImports />
 						</java>
 					</configuration>
