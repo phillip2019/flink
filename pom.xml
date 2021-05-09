@@ -60,11 +60,11 @@ under the License.
 			<name>aliyun maven</name>
 			<url>https://maven.aliyun.com/nexus/content/groups/public/</url>
 		</repository>
-		<repository>
-			<id>nexus-163</id>
-			<name>Nexus 163</name>
-			<url>https://mirrors.163.com/maven/repository/maven-public/</url>
-		</repository>
+<!--		<repository>-->
+<!--			<id>nexus-163</id>-->
+<!--			<name>Nexus 163</name>-->
+<!--			<url>https://mirrors.163.com/maven/repository/maven-public/</url>-->
+<!--		</repository>-->
 		<repository>
 			<id>central</id>
 			<name>central</name>
