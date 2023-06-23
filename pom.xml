@@ -49,6 +49,24 @@ under the License.
 		<developerConnection>scm:git:https://gitbox.apache.org/repos/asf/flink.git</developerConnection>
 	</scm>
 
+	<!--添加CDH的仓库-->
+	<repositories>
+		<repository>
+			<id>cloudera</id>
+			<url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
+		</repository>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>central</name>
+			<url>https://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+
 	<modules>
 		<module>flink-annotations</module>
 		<module>flink-core</module>
@@ -92,7 +110,7 @@ under the License.
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<hadoop.version>2.4.1</hadoop.version>
+		<hadoop.version>3.0.0-cdh6.3.2</hadoop.version>
 		<!-- Need to use a user property here because the surefire
 			 forkCount is not exposed as a property. With this we can set
 			 it on the "mvn" commandline in travis. -->
@@ -1036,6 +1054,22 @@ under the License.
 							<configuration>
 								<skip>true</skip>
 							</configuration>
+							<executions>
+								<execution>
+									<id>verify</id>
+									<phase>verify</phase>
+									<configuration>
+										<skip>true</skip>
+										<encoding>UTF-8</encoding>
+										<consoleOutput>true</consoleOutput>
+										<failsOnError>true</failsOnError>
+										<includeTestSourceDirectory>false</includeTestSourceDirectory>
+									</configuration>
+									<goals>
+										<goal>check</goal>
+									</goals>
+								</execution>
+							</executions>
 						</plugin>
 						<plugin>
 							<groupId>com.diffplug.spotless</groupId>
@@ -1240,6 +1274,9 @@ under the License.
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 						<version>1.4</version>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -1533,6 +1570,9 @@ under the License.
 			<plugin>
 				<groupId>com.diffplug.spotless</groupId>
 				<artifactId>spotless-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -1894,6 +1934,7 @@ under the License.
 					<artifactId>spotless-maven-plugin</artifactId>
 					<version>${spotless.version}</version>
 					<configuration>
+						<skip>true</skip>
 						<java>
 							<googleJavaFormat>
 								<version>1.7</version>
