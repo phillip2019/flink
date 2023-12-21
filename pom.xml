@@ -28,7 +28,7 @@ under the License.
 
 	<groupId>org.apache.flink</groupId>
 	<artifactId>flink-parent</artifactId>
-	<version>1.17.2</version>
+	<version>1.17</version>
 
 	<name>Flink : </name>
 	<packaging>pom</packaging>
@@ -556,6 +556,13 @@ under the License.
 				<!-- API bridge between log4j 1 and 2 -->
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-1.2-api</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
 				<version>${log4j.version}</version>
 			</dependency>
 
