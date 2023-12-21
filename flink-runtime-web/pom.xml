@@ -270,14 +270,27 @@ under the License.
 					</execution>
 					<execution>
 						<id>npm install</id>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>npm</goal>
 						</goals>
 						<configuration>
+							<arguments>install</arguments>
 							<arguments>ci --cache-max=0 --no-save ${npm.proxy}</arguments>
 							<environmentVariables>
 								<HUSKY_SKIP_INSTALL>true</HUSKY_SKIP_INSTALL>
 							</environmentVariables>
+						</configuration>
+					</execution>
+					<!--执行npm run build-->
+					<execution>
+						<id>npm run build</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>run build</arguments>
 						</configuration>
 					</execution>
 					<execution>
