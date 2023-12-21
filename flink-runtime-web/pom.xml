@@ -259,38 +259,27 @@ under the License.
 						</goals>
 						<configuration>
 							<nodeVersion>v16.13.2</nodeVersion>
+
 							<npmVersion>8.1.2</npmVersion>
 							<!--配置公网的镜像地址-->
-							<downloadRoot>http://npm.taobao.org/mirrors/node/</downloadRoot>
-							<nodeDownloadRoot>http://npm.taobao.org/mirrors/node/</nodeDownloadRoot>
-							<npmDownloadRoot>http://npm.taobao.org/mirrors/npm/</npmDownloadRoot>
+<!--							<downloadRoot>http://npm.taobao.org/mirrors/node/</downloadRoot>-->
+<!--							<nodeDownloadRoot>http://npm.taobao.org/mirrors/node/</nodeDownloadRoot>-->
+<!--							<npmDownloadRoot>http://npm.taobao.org/mirrors/npm/</npmDownloadRoot>-->
 							<!--配置公网的npm仓库地址-->
-							<npmRegistryURL>http://npm.thunisoft.com</npmRegistryURL>
+<!--							<npmRegistryURL>http://npm.thunisoft.com</npmRegistryURL>-->
 						</configuration>
 					</execution>
 					<execution>
 						<id>npm install</id>
-						<phase>generate-sources</phase>
 						<goals>
 							<goal>npm</goal>
 						</goals>
 						<configuration>
-							<arguments>install</arguments>
-							<arguments>ci --cache-max=0 --no-save ${npm.proxy}</arguments>
+<!--							<arguments>ci &#45;&#45;cache-max=0 &#45;&#45;no-save ${npm.proxy}</arguments>-->
+							<arguments>ci --cache-max=0 --no-save </arguments>
 							<environmentVariables>
 								<HUSKY_SKIP_INSTALL>true</HUSKY_SKIP_INSTALL>
 							</environmentVariables>
-						</configuration>
-					</execution>
-					<!--执行npm run build-->
-					<execution>
-						<id>npm run build</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>run build</arguments>
 						</configuration>
 					</execution>
 					<execution>
