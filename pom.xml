@@ -74,6 +74,11 @@ under the License.
 				<enabled>false</enabled>
 			</releases>
 		</repository>
+		<!-- HTTP Repository for pentaho-aggdesigner-algorithm 5.1.5-jhyde required by calcite-1.2.0-incubating -->
+		<repository>
+			<id>conjars</id>
+			<url>https://conjars.org/repo</url>
+		</repository>
 	</repositories>
 
 	<modules>
