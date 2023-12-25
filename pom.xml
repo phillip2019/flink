@@ -52,6 +52,7 @@ under the License.
 	<repositories>
 		<repository>
 			<id>cloudera</id>
+			<name>cloudera</name>
 			<url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
 		</repository>
 		<repository>
@@ -77,7 +78,12 @@ under the License.
 		<!-- HTTP Repository for pentaho-aggdesigner-algorithm 5.1.5-jhyde required by calcite-1.2.0-incubating -->
 		<repository>
 			<id>conjars</id>
+			<name>conjars</name>
 			<url>https://mirrors.tuna.tsinghua.edu.cn/clojars/</url>
+		</repository>
+		<repository>
+			<id>spring-libs</id>
+			<url>https://repo.spring.io/libs-milestone/</url>
 		</repository>
 	</repositories>
 
