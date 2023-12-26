@@ -49,6 +49,24 @@ under the License.
 		<developerConnection>scm:git:https://gitbox.apache.org/repos/asf/flink.git</developerConnection>
 	</scm>
 
+	<!--添加CDH的仓库-->
+	<repositories>
+		<repository>
+			<id>cloudera</id>
+			<url>https://repository.cloudera.com/artifactory/cloudera-repos</url>
+		</repository>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>central</name>
+			<url>https://repo1.maven.org/maven2/</url>
+		</repository>
+	</repositories>
+
 	<modules>
 		<module>flink-annotations</module>
 		<module>flink-core</module>
